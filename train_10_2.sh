@@ -11,6 +11,11 @@ python tools/convert-pretrained-model-to-d2.py swin_large_patch4_window12_384_22
 export DETECTRON2_DATASETS=/datasets
 export WANDB_API_KEY=f773908953fc7bea7008ae1cf3701284de1a0682
 
+# check python
+conda deactivate
+echo "Conda environment deactivated. Current Python version is: $(which python)"
+echo "Python version: $(python --version)"
+
 # start training
 python train_net.py --dist-url 'tcp://127.0.0.1:50163' \
     --num-gpus 8 \
