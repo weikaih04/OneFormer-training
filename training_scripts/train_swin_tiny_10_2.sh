@@ -17,7 +17,7 @@ echo "Python version: $(python --version)"
 # start training
 python train_net.py --dist-url 'tcp://127.0.0.1:50163' \
     --num-gpus 8 \
-    --config-file configs/ade20k/swin/oneformer_swin_tiny_bs16_160k \
+    --config-file configs/ade20k/swin/oneformer_swin_tiny_bs16_160k.yaml \
     OUTPUT_DIR /results/ade20k_swin_tiny WANDB.NAME ade20k_swin_tiny \
     --resume
 
