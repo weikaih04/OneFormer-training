@@ -13,6 +13,7 @@ export WANDB_API_KEY=f773908953fc7bea7008ae1cf3701284de1a0682
 
 # check python
 conda deactivate
+export PATH="/opt/conda/bin:$PATH"
 echo "Conda environment deactivated. Current Python version is: $(which python)"
 echo "Python version: $(python --version)"
 
