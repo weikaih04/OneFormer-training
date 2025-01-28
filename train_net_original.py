@@ -1,29 +1,23 @@
-# import debugpy
-# try:
-#     # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
-#     debugpy.listen(("172.17.0.3", 9501))
-#     print("Waiting for debugger attach")
-#     debugpy.wait_for_client()
-# except Exception as e:
-#     pass
+import debugpy
+try:
+    # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
+    debugpy.listen(("172.17.0.3", 9501))
+    print("Waiting for debugger attach")
+    debugpy.wait_for_client()
+except Exception as e:
+    pass
+
 
 # ------------------------------------------------------------------------------
 # Reference: https://github.com/facebookresearch/Mask2Former/blob/main/train_net.py
 # Modified by Jitesh Jain (https://github.com/praeclarumjj3)
 # ------------------------------------------------------------------------------
 
-
 """
 OneFormer Training Script.
 
 This script is a simplified version of the training script in detectron2/tools.
 """
-
-# import debugpy
-# debugpy.listen(("localhost", 9501))
-# print("Waiting for debugger attach")
-# debugpy.wait_for_client()
-
 import copy
 import itertools
 import logging
@@ -67,7 +61,6 @@ from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
 
 from oneformer import (
-    SyntheticDatasetMapper,
     COCOUnifiedNewBaselineDatasetMapper,
     OneFormerUnifiedDatasetMapper,
     InstanceSegEvaluator,
@@ -174,10 +167,7 @@ class Trainer(DefaultTrainer):
     @classmethod
     def build_train_loader(cls, cfg):
         # Unified segmentation dataset mapper
-        if cfg.INPUT.DATASET_MAPPER_NAME == "synthetic":
-            mapper = SyntheticDatasetMapper(cfg, True)
-            return build_detection_train_loader(cfg, mapper=mapper)
-        elif cfg.INPUT.DATASET_MAPPER_NAME == "oneformer_unified":
+        if cfg.INPUT.DATASET_MAPPER_NAME == "oneformer_unified":
             mapper = OneFormerUnifiedDatasetMapper(cfg, True)
             return build_detection_train_loader(cfg, mapper=mapper)
         # coco unified segmentation lsj new baseline
